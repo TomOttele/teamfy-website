@@ -1,3 +1,4 @@
+// app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
@@ -5,7 +6,6 @@ import { getMessages } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
-// Fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,28 +16,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Metadata
 export const metadata: Metadata = {
   title: "Teamfy",
   description: "Manage your team wallet like a pro",
 };
 
-// ✅ Strongly type props but DO NOT extend LayoutProps
-type Props = {
+// ✅ Don't use LayoutProps or any constraint that expects Promise<...>
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
   children: React.ReactNode;
-  params: {
-    locale: string;
-  };
-};
-
-export default async function LocaleLayout({ children, params }: Props) {
-  const locale = params.locale;
+  params: { locale: string };
+}) {
+  const { locale } = params;
 
   if (!["en", "fr", "de"].includes(locale)) {
     notFound();
   }
 
-  const messages = await getMessages({ locale });
+  const messages = await getMessages();
 
   return (
     <html lang={locale}>
