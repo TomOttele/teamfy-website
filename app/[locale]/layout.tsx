@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
+// Fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,15 +16,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Metadata
 export const metadata: Metadata = {
   title: "Teamfy",
   description: "Manage your team wallet like a pro",
 };
 
-// ✅ Define props explicitly
+// ✅ Strongly type props but DO NOT extend LayoutProps
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: {
+    locale: string;
+  };
 };
 
 export default async function LocaleLayout({ children, params }: Props) {
