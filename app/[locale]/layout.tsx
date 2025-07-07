@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
+// Load custom fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,23 +16,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Metadata
 export const metadata: Metadata = {
   title: "Teamfy",
   description: "Manage your team wallet like a pro",
 };
 
-export default async function LocaleLayout({
-  children,
-  params: { locale },
-}: {
+// Props type
+type Props = {
   children: React.ReactNode;
   params: { locale: string };
-}) {
+};
+
+// Async layout function
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = params;
+
   if (!["en", "fr", "de"].includes(locale)) {
     notFound();
   }
 
-  const messages = await getMessages(); // ✅ works on server
+  const messages = await getMessages();
 
   return (
     <html lang={locale}>
