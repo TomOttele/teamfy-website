@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
@@ -19,18 +20,18 @@ export const metadata: Metadata = {
   description: "Manage your team wallet like a pro",
 };
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const messages = useMessages();
-
   if (!["en", "fr", "de"].includes(locale)) {
     notFound();
   }
+
+  const messages = await getMessages(); // ✅ works on server
 
   return (
     <html lang={locale}>
