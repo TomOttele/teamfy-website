@@ -5,7 +5,7 @@ import { getMessages } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
-// Load custom fonts
+// Load fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,21 +16,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Metadata
+// Static metadata
 export const metadata: Metadata = {
   title: "Teamfy",
   description: "Manage your team wallet like a pro",
 };
 
-// Props type
-type Props = {
+// ✅ CORRECT: Layout function with destructured props
+export default async function LocaleLayout(props: {
   children: React.ReactNode;
   params: { locale: string };
-};
-
-// Async layout function
-export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = params;
+}) {
+  const locale = props.params.locale;
 
   if (!["en", "fr", "de"].includes(locale)) {
     notFound();
@@ -44,7 +41,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          {props.children}
         </NextIntlClientProvider>
       </body>
     </html>
