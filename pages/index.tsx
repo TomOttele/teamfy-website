@@ -23,7 +23,7 @@ export default function Home() {
       <Head>
         <title>Teamfy</title>
       </Head>
-      <main className="min-h-screen bg-gradient-to-b from-indigo-900 to-blue-900 text-white flex flex-col items-center">
+      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-900 to-blue-900 text-white flex flex-col items-center">
         <Header />
 
         <section className="text-center mt-20">
