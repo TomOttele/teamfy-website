@@ -23,7 +23,7 @@ export default function Home() {
       <Head>
         <title>Teamfy</title>
       </Head>
-      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-900 to-blue-900 text-green flex flex-col items-center">
+      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-900 to-blue-900 text-green  flex-col">
         <Header />
 
         <section className="text-center mt-20">
@@ -51,7 +51,7 @@ export default function Home() {
             {t("headline")}
           </h1>
           <p className="text-lg mb-6">{t("subheadline")}</p>
-          <button className="bg-white text-black rounded-full px-6 py-2 text-lg font-semibold hover:bg-gray-200">
+          <button className="bg-red-600 text-black rounded-full px-6 py-2 text-lg font-semibold hover:bg-gray-200">
             {t("download")}
           </button>
         </section>
