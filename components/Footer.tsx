@@ -2,11 +2,13 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 text-sm text-gray-300 text-center space-y-1">
-      <p>Teamfy © 2025, All rights reserved.</p>
+    <footer className="mt-20 text-sm text-gray-300 px-4">
+      <div className="w-full max-w-screen-xl mx-auto flex justify-between items-center flex-wrap gap-4">
+        {/* Left: Copyright */}
+        <p className="whitespace-nowrap">Teamfy © 2025, All rights reserved.</p>
 
-      <div className="flex justify-between items-center flex-wrap gap-4 text-center sm:text-left sm:justify-between">
-        <div className="space-x-8">
+        {/* Center: Links */}
+        <div className="flex gap-6 flex-wrap justify-center">
           <a href="#" className="underline">
             Terms of Use
           </a>
@@ -17,7 +19,11 @@ export default function Footer() {
             Contact us
           </a>
         </div>
-        <LanguageSwitcher /> {/* ✅ Now inline on the same line */}
+
+        {/* Right: Language Switcher */}
+        <div className="shrink-0">
+          <LanguageSwitcher />
+        </div>
       </div>
     </footer>
   );
