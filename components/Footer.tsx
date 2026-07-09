@@ -13,7 +13,7 @@ export default function Footer() {
             Terms of Use
           </a>
           <a href="#" className="underline">
-            Privacy Policy
+            Privacy Policy x
           </a>
           <a href="#" className="underline">
             Contact us
